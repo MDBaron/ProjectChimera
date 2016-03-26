@@ -5,13 +5,13 @@ import org.robovm.apple.uikit.UIApplication;
 
 import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
-import com.chimera.droidport.ChimeraCore;
+import com.chimera.droidport.Deprecated_ChimeraCore;
 
 public class IOSLauncher extends IOSApplication.Delegate {
     @Override
     protected IOSApplication createApplication() {
         IOSApplicationConfiguration config = new IOSApplicationConfiguration();
-        return new IOSApplication(new ChimeraCore(), config);
+        return new IOSApplication(new Deprecated_ChimeraCore(), config);
     }
 
     public static void main(String[] argv) {

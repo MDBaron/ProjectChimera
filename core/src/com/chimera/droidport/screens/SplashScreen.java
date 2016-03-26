@@ -2,27 +2,54 @@ package com.chimera.droidport.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class SplashScreen extends GameScreen {
+public class SplashScreen extends MainScreen {
 
-	TextureRegion splash;
-	SpriteBatch batch;
-	float time = 0;
-	String filePath = "SplashScreen.png";
+	private TextureRegion splash;
+	private Texture splashTexture;
+	private SpriteBatch batch;
+	private OrthographicCamera camera;
+	private float time = 0;
+	private String filePath = "Free_Hugs.png";
 	
 	public SplashScreen(Game game){
 		super(game);
+		hihihi_Mu = Gdx.audio.newMusic(Gdx.files.internal("Hi Hi Hi.mp3"));
+		batch = new SpriteBatch();
+		//hihihi_Mu.setLooping(isLooping);
+		//hihihi_Mu.play();
 	}
 	
+	@Override
+	public void create(){
+		
+	}
 	
 	@Override
 	public void render(float delta) {
-		// TODO Auto-generated method stub
+		//Set the background color
+		Gdx.gl.glClearColor(0,0,0,1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		batch.begin();
+		batch.draw(splash, splash.getRegionWidth()/2, splash.getRegionHeight()/2);
+        batch.end();
+				
 		
+		time += delta;
+		if(time > 1.5){
+			if( isTouched || Gdx.input.isKeyPressed(Keys.ANY_KEY) || Gdx.input.justTouched())
+				
+				game.setScreen(new MenuScreen(game));
+		}
 	}
 
 	@Override
@@ -33,9 +60,10 @@ public class SplashScreen extends GameScreen {
 
 	@Override
 	public void show() {
-		splash = new TextureRegion(new Texture(Gdx.files.internal(filePath)), 0, 0, m_Screen_Width, m_Screen_Height);
+		splashTexture = new Texture(Gdx.files.internal(filePath));
+		splash = new TextureRegion(splashTexture, 0, 0, splashTexture.getWidth(), splashTexture.getHeight());
 		batch = new SpriteBatch();
-		batch.getProjectionMatrix().setToOrtho2D(0, 0, m_Projection_Matrix_Width, m_Projection_Matirx_Height);
+		batch.getProjectionMatrix().setToOrtho2D(0, 0, splash.getRegionWidth()*2, splash.getRegionHeight()*2);
 		
 	}
 
@@ -61,7 +89,10 @@ public class SplashScreen extends GameScreen {
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
+		Gdx.app.debug("Chimera", "dispose splash");
+		batch.dispose();
+		splash.getTexture().dispose();
+		
 		
 	}
 

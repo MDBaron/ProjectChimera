@@ -1,0 +1,11 @@
+button.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tetris-atari-hd-1-1-s-307x512
+  rotate: true
+  xy: 2, 2
+  size: 383, 307
+  orig: 383, 307
+  offset: 0, 0
+  index: -1

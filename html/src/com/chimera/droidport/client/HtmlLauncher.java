@@ -3,7 +3,7 @@ package com.chimera.droidport.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import com.chimera.droidport.ChimeraCore;
+import com.chimera.droidport.Deprecated_ChimeraCore;
 
 public class HtmlLauncher extends GwtApplication {
 
@@ -14,6 +14,6 @@ public class HtmlLauncher extends GwtApplication {
 
         @Override
         public ApplicationListener getApplicationListener () {
-                return new ChimeraCore();
+                return new Deprecated_ChimeraCore();
         }
 }
